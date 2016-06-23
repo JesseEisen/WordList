@@ -1,12 +1,12 @@
 ## Introduction
 
 `WordList` is a command line tool, You can use it to search a word definition, and save it
-into a local file. And then when you want review it, you can show all the word you have searched
-and Inserted. Last, you can export the file into excel, so you can do more extra about the that.
+into a local file. And then when you want review it, you can show all the words you have searched
+and Inserted. Last, you can export the file into excel, so you can do more extra jobs on that.
 
 
 ## Install
-Before you use this tool, you need to install two package:
+Before you use this tool, you need to install two packages:
 
 ```
 	pip install colorama
@@ -17,9 +17,10 @@ When you install them correctly, you can try some examples below
 
 ## Example
 
-Here I will show you some example. Every time you can use `WordList -h` to get help, like: 
+Here I will show you some examples. you can use `WordList -h` to get help, like: 
 
 ```
+$ WordList -h
 usage: WordList.py [-h] [-s S_WORD] [-a A_WORD] [-p [PRINT_LATELY]] [-e] [-i]
 
 optional arguments:
