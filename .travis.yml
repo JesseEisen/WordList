@@ -4,4 +4,5 @@ python:
 
 install: 
     pip install colorama
+    pip install coverage
 script: ./test.sh
