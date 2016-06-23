@@ -4,4 +4,4 @@ python:
 
 install: 
     pip install colorama
-script: test.sh
+script: ./test.sh
