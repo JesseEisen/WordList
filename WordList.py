@@ -5,8 +5,11 @@ import os
 import sys 
 import json
 import urllib2
-from pprint import pprint
+from pprint  import pprint
+from colorama import init
+from colorama import Fore, Back, Style
 
+init()
 filepath = "./word.md"
 f        = open(filepath,"a+")
 baseurl  = 'https://api.shanbay.com/bdc/search/?word='
@@ -21,7 +24,9 @@ def CheckCommandLine():
 		sys.exit(0)
 
 def ShowHelp():
-	print "Usage: python %s word" %(sys.argv[0])
+	print(Style.BRIGHT)
+	print(Fore.RED + "Usage: python %s word" %(sys.argv[0]))
+	print(Style.RESET_ALL)
 
 def GetDefinitonFromShanBay(word):
 	url  = baseurl+word
@@ -29,20 +34,27 @@ def GetDefinitonFromShanBay(word):
 	#resp = json.loads(u.read().decode('utf-8'),object_hook=JSONObject)
 	resp = json.loads(u.read().decode('utf-8'))
 	if resp.get('data',0) == {}:  # resp is empty
-		print "Cannot get the definition,Please check out your word"
+		print 
+		print(Fore.RED + "Cannot get the definition\nPlease check out your word:"+Fore.GREEN+"%s") %(word)
+		print(Style.RESET_ALL)
 		sys.exit(0)
-	s    = resp.data.definition.encode('utf-8').strip('\n')
+	s    = resp["data"]["definition"].encode('utf-8').strip('\n')
 	definition = " ".join(s.split())
 	return definition
 
 def WriteWordIntoFile(word):
 	definition = GetDefinitonFromShanBay(word)
 	print >> f, "%-20s\t%s" %(word, definition)
+	print(Style.BRIGHT)
+	print(Fore.GREEN + "Add Word Sussess!")
+	print(Style.RESET_ALL)
 
 def	CheckOutWord(word):
 	for line in f:
 		if line.find(word) != -1:
-			print "The word you have inserted before, see:\n %s" %(line.strip())
+			print(Style.BRIGHT)
+			print(Fore.YELLOW+"The word you have inserted before, see:\n"+Fore.GREEN+" %s") %(line.strip())
+			print(Style.RESET_ALL)
 			return 1 #means the word exsit
 	return 0   #means the word not exsit
 
@@ -68,6 +80,10 @@ def InsertWord():
 	WriteWordIntoFile(word)
 
 
-InsertWord()
+def main():
+	InsertWord()
+
+if __name__ == '__main__':
+	sys.exit(main())
 
 
