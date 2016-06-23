@@ -1,3 +1,7 @@
+## WordList
+
+[![Build Status](https://travis-ci.org/JesseEisen/WordList.svg?branch=master)](https://travis-ci.org/JesseEisen/WordList)
+
 ## Introduction
 
 `WordList` is a command line tool, You can use it to search a word definition, and save it
