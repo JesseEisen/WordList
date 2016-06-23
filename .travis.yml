@@ -3,6 +3,6 @@ python:
 - '2.7'
 
 install: 
-    pip install colorama
-    pip install coverage
+    - pip install colorama
+    - pip install coverage
 script: ./test.sh
