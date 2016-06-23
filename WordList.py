@@ -16,19 +16,6 @@ filepath = "./word.md"
 f        = open(filepath,"a+")
 baseurl  = 'https://api.shanbay.com/bdc/search/?word='
 
-class JSONObject:
-	def __init__(self,d):
-		self.__dict__ = d
-
-def CheckCommandLine():
-	if len(sys.argv) == 1:
-		ShowHelp()
-		sys.exit(0)
-
-def ShowHelp():
-	print(Style.BRIGHT)
-	print(Fore.RED + "Usage: python %s word" %(sys.argv[0]))
-	print(Style.RESET_ALL)
 
 def GetDefinitonFromShanBay(word):
 	url  = baseurl+word
@@ -104,16 +91,15 @@ def	ParseCommandLinePara():
 	results = parser.parse_args()
 	return results
 
-def GetExampleFromShanBay(w_id):
-	ExampleUrl = 'https://api.shanbay.com/bdc/example/?vocabulary_id='+str(w_id)+'&type=sys'
-	print ExampleUrl
-	u    = urllib2.urlopen(ExampleUrl)
-	resp = json.loads(u.read().decode('utf-8'))
-	if resp.get('data',0) == {}:  # resp is empty
-		return (None,None,0)
-	example   = resp["data"][0]["annotation"]
-	translate = resp["data"][0]["translation"]
-	return (example,translate,1)
+#def GetExampleFromShanBay(w_id):
+#	ExampleUrl = 'https://api.shanbay.com/bdc/example/?vocabulary_id='+str(w_id)+'&type=sys'
+#	u    = urllib2.urlopen(ExampleUrl)
+#	resp = json.loads(u.read().decode('utf-8'))
+#	if resp.get('data',0) == {}:  # resp is empty
+#		return (None,None,0)
+#	example   = resp["data"][0]["annotation"]
+#	translate = resp["data"][0]["translation"]
+#	return (example,translate,1)
 
 def ShowWordDef(word):
 	resp          = GetDefinitonFromShanBay(word)

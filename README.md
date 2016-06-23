@@ -50,6 +50,13 @@ Now, you can use:
 
 Notice:  the export cannot work now, comming soon~
 
+## Coverage Report
+
+```
+Name          Stmts   Miss  Cover
+---------------------------------
+WordList.py      97      3    97%
+```
 ## License 
 
 The MIT License (MIT)
