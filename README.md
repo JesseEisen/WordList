@@ -33,12 +33,18 @@ optional arguments:
 
 Now, you can use:
 
-+ WordList -s word       search and show the definition of the `word`
-+ WordList -s word -i    search and show the definition of the `word` and insert it into file
-+ WordList -a word       append the word into file
-+ WordList -p            show recently 10 items(default)
-+ WordList -p  n         show recently n  items
-+ WordList -e            export wordlist into excel
++ WordList -s word       
+  search and show the definition of the `word`
++ WordList -s word -i    
+  search and show the definition of the `word` and insert it into file
++ WordList -a word       
+  append the word into file
++ WordList -p            
+  show recently 10 items(default)
++ WordList -p  n         
+  show recently n  items
++ WordList -e            
+  export wordlist into excel
 
 
 Notice:  the export cannot work now, comming soon~
