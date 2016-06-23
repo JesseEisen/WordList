@@ -4,4 +4,4 @@ python:
 
 install: 
     pip install colorama
-script: nosetests
+script: test.sh
