@@ -103,15 +103,20 @@ def	ParseCommandLinePara():
 
 def ShowWordDef(word):
 	resp          = GetDefinitonFromShanBay(word)
+	hasEn         = 0
 	s             = resp["data"]["definition"].encode('utf-8').strip('\n')
 	definition_cn = " ".join(s.split())
-	s             = resp["data"]["en_definition"]["defn"].encode('utf-8').strip('\n')
-	definition_en = " ".join(s.split())
-	word_id       = resp["data"]["id"]
+	if resp["data"]["en_definition"] != {}:
+		s     = resp["data"]["en_definition"]["defn"].encode('utf-8').strip('\n')
+		hasEn = 1 
+		definition_en = " ".join(s.split())
+	#word_id       = resp["data"]["id"]
 	#example,translate,Ishave= GetExampleFromShanBay(word_id)
 	print(Style.BRIGHT)
 	print(Fore.RED + word + '\n')
-	print(Fore.GREEN + "[En Def]:\n" +"  " + definition_en)
+	if hasEn == 1:
+		print(Fore.GREEN + "[En Def]:\n" +"  " + definition_en)
+		
 	print(Fore.GREEN + "[Cn Def]:\n" +"  " + definition_cn)
 	#if Ishave == 1:
 	#	print(Fore.YELLOW + "Example:\n" + "\t- " + Fore.Green + example)
