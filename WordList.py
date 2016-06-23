@@ -89,9 +89,9 @@ def	ParseCommandLinePara():
 	parser.add_argument('-a',action='store',dest='a_word',
 			help='append a word into the word list')
 
-	parser.add_argument('-p',action='store_true',default=False,
-			dest='print_lately',
-			help='print 10 lately words')
+	parser.add_argument('-p',action='store',default=False,
+			dest='print_lately',type=int,nargs='?',
+			help='print n lately words')
 
 	parser.add_argument('-e',action='store_true',default=False,
 			dest='export_excel',
@@ -133,10 +133,10 @@ def ShowWordDef(word):
 	print(Style.RESET_ALL)
 
 
-def ShowLately():
+def ShowLately(n=10):
 	while True:
 		print(Style.BRIGHT)
-		for lines in list(deque(f,10)):
+		for lines in list(deque(f,n)):
 			line_list = lines.split('\t')
 			print(Fore.MAGENTA +  "%-20s" + '\t' + 
 					Fore.CYAN + line_list[1].strip('\n')) %(line_list[0])
@@ -158,6 +158,8 @@ def main():
 		if res.InsertWord:
 			InsertWord(res.s_word)
 	elif res.print_lately:
+		ShowLately(res.print_lately)
+	elif res.print_lately == None:
 		ShowLately()
 	elif res.export_excel:
 		ExportList()
