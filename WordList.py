@@ -6,14 +6,18 @@ import sys
 import json
 import urllib2
 import argparse
+import openpyxl
 from pprint  import pprint
 from colorama import init
 from colorama import Fore, Back, Style
 from collections import deque
+from openpyxl.compat import range 
+
 
 init()
-filepath = "./word.md"
-f        = open(filepath,"a+")
+global f  
+filepath = "./word.md"       
+f = open(filepath,"a+")
 baseurl  = 'https://api.shanbay.com/bdc/search/?word='
 
 
@@ -37,6 +41,7 @@ def WriteWordIntoFile(word):
 	print(Style.BRIGHT)
 	print(Fore.GREEN + "Add Word Sussess!")
 	print(Style.RESET_ALL)
+	f.close()
 
 def	CheckOutWord(word):
 	for line in f:
@@ -135,8 +140,28 @@ def ShowLately(n=10):
 	print(Style.RESET_ALL)
 	
 
+content=[]
+
 def ExportList():
-	pass
+	if os.path.isfile('word.xlsx'):
+		wb = openpyxl.load_workbook("word.xlsx")
+	else:
+		wb = openpyxl.Workbook()
+
+
+  	ws = wb.active
+
+	for line in f:
+		content.append(line.split('\t'))
+		
+	for col in range(1,3):
+		for row in range(1,len(content)):
+			_ = ws.cell(column=col, row = row, value="%s" %content[row-1][col-1])
+
+	wb.save(filename="word.xlsx")
+
+	
+
 
 
 def main():

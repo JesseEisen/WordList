@@ -15,6 +15,7 @@ Before you use this tool, you need to install two packages:
 ```
 	pip install colorama
 	pip install shanbay
+	pip install openpyxl
 ```
 
 When you install them correctly, you can try some examples below
