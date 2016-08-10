@@ -20,7 +20,6 @@ filepath = "./word.md"
 f = open(filepath,"a+")
 baseurl  = 'https://api.shanbay.com/bdc/search/?word='
 
-
 def GetDefinitonFromShanBay(word):
 	url  = baseurl+word
 	u    = urllib2.urlopen(url)
@@ -43,7 +42,7 @@ def WriteWordIntoFile(word):
 	print(Style.RESET_ALL)
 	f.close()
 
-def	CheckOutWord(word):
+def CheckOutWord(word):
 	for line in f:
 		if line.find(word) != -1:
 			print(Style.BRIGHT)
@@ -59,11 +58,9 @@ def CheckFileIsEmpty():
 		return 0
 
 def InsertWord(word):
-	# get word
-	#word = sys.argv[1].encode('utf-8').strip()
 	# check file
 	ret = CheckFileIsEmpty()
-	#if the file is not empty, so we need to 
+	# if the file is not empty, so we need to 
 	# check whether the word exsited.if exsited
 	# just print the word and the definition
 	if ret == 0: 
@@ -128,7 +125,6 @@ def ShowWordDef(word):
 	#	print("\t- " + translate)
 	print(Style.RESET_ALL)
 
-
 def ShowLately(n=10):
 	while True:
 		print(Style.BRIGHT)
@@ -138,16 +134,13 @@ def ShowLately(n=10):
 					Fore.CYAN + line_list[1].strip('\n')) %(line_list[0])
 		break
 	print(Style.RESET_ALL)
-	
 
 content=[]
-
 def ExportList():
 	if os.path.isfile('word.xlsx'):
 		wb = openpyxl.load_workbook("word.xlsx")
 	else:
 		wb = openpyxl.Workbook()
-
 
   	ws = wb.active
 
@@ -159,10 +152,6 @@ def ExportList():
 			_ = ws.cell(column=col, row = row, value="%s" %content[row-1][col-1])
 
 	wb.save(filename="word.xlsx")
-
-	
-
-
 
 def main():
 	#CheckCommandLine()
